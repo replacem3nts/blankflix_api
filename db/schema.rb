@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_171524) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "app_name", default: "[blank]"
+    t.string "appname", default: "[blank]"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

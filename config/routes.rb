@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      get '/users/persist_login', to: 'users#persist_login'
+      post '/users/login', to: 'users#login'
+      post '/users', to: 'users#create'
+      patch '/users', to: 'users#update'
+      delete '/users', to: 'users#destroy'
+      post '/movies', to: 'movies#create'
+      delete '/movies/:id', to: 'movies#delete'
+    end
+  end
 end
