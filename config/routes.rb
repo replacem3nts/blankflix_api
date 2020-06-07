@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       post '/users', to: 'users#create'
       patch '/users', to: 'users#update'
       delete '/users', to: 'users#destroy'
+      
+      get '/movies/:id', to: 'movies#show'
       post '/movies', to: 'movies#create'
       delete '/movies/:id', to: 'movies#delete'
     end

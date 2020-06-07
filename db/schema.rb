@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 2020_06_05_171524) do
 
   create_table "movies", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "title"
-    t.string "length"
     t.string "url"
-    t.string "urlthumb"
+    t.string "title"
+    t.string "smallthumb"
+    t.string "medthumb"
+    t.string "lrgthumb"
+    t.string "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_movies_on_user_id"
