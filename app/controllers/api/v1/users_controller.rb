@@ -10,9 +10,9 @@ class Api::V1::UsersController < ApplicationController
         @user = User.find_by(username: user_params[:username])
         if @user && @user.authenticate(user_params[:password])
             wristband = encode_token({user_id: @user.id})
-            render json: {user: UserSerializer.new(@user), token: wristband}
+            render json: {user: UserSerializer.new(@user), token: wristband}, status: 200
         else
-            render json: {message: 'Sorry! Incorrect username or password.'}
+            render json: {message: 'Sorry! Incorrect username or password.'}, status: 403
         end
     end
     
@@ -22,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
             wristband = encode_token(user_id: @user.id)
             render json: {user: UserSerializer.new(@user), token: wristband}, status: 201
         else
-            render json: {message: 'Failed to create user'}, status: 403
+            render json: {message: 'Sorry! That username has been taken.'}, status: 403
         end
     end
 
