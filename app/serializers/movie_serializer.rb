@@ -1,3 +1,3 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :id, :title, :length, :url, :urlthumb
+  attributes :id, :url, :title, :smallthumb, :medthumb, :lrgthumb, :duration
 end
