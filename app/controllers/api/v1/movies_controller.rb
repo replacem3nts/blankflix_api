@@ -1,8 +1,5 @@
 class Api::V1::MoviesController < ApplicationController
     before_action :authorized
-
-    def show
-    end
     
     def create
         user_id = @user.id
@@ -15,6 +12,14 @@ class Api::V1::MoviesController < ApplicationController
     end
 
     def delete
+        @movie_id = params[:id]
+        @movie = Movie.find(@movie_id)
+        is_destroyed = @movie.user_id == @user.id ? @movie.destroy : nil
+        if !!is_destroyed
+            render json: {movie_id: @movie_id}, status: 202
+        else
+            render json: {message: "Movie could not be removed."}, status: 404
+        end
     end
 
     private
