@@ -30,18 +30,18 @@ class Api::V1::UsersController < ApplicationController
         valid_update = @user.update(username: params[:username], appname: params[:appname])
         if (valid_update)
             wristband = encode_token(user_id: @user.id)
-            render json: {user: UserSerializer.new(@user), token: wristband}
+            render json: {user: UserSerializer.new(@user), token: wristband}, status: 202
         else
-            render json: {message: "Sorry, you're not permitted to update another user."}
+            render json: {message: "Sorry, you're not permitted to update another user."}, status: 403
         end
     end
 
     def destroy
-        if @user
-            @user.destroy
-            render json: {message: 'User was destroyed'}
+        valid_destroy = @user.destroy
+        if valid_destroy
+            render json: {garbage: 'Deleted'}, status: 202
         else
-            render json: {message: 'Sorry! User could not be found.'}
+            render json: {message: 'Sorry! User could not be deleted.'}, status: 403
         end
     end
 
