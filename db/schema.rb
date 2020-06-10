@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_171524) do
+ActiveRecord::Schema.define(version: 2020_06_09_215500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channelmovies", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "channel_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_channelmovies_on_channel_id"
+    t.index ["movie_id"], name: "index_channelmovies_on_movie_id"
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "movies", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,5 +51,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_171524) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "channelmovies", "channels"
+  add_foreign_key "channelmovies", "movies"
   add_foreign_key "movies", "users"
 end
