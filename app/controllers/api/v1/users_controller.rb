@@ -1,5 +1,10 @@
 class Api::V1::UsersController < ApplicationController
     before_action :authorized, only: [:persist_login, :update, :destroy]
+
+    def show
+        @user = User.find(1)
+        render json: {user: UserSerializer.new(@user)}
+    end
     
     def persist_login
         wristband = encode_token({user_id: @user.id})
