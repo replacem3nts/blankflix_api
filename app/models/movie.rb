@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   belongs_to :user
-  has_many :channelmovies
+  has_many :channelmovies, dependent: :destroy
   has_many :channels, through: :channelmovies
 
   def movie_channels
@@ -9,9 +9,10 @@ class Movie < ApplicationRecord
   end
 
   def add_if_channel(channel_name)
-    if channel_name !== ""
+    if channel_name != ""
       @channel = Channel.find_or_create(channel_name)
       self.channels.push(@channel)
+    end
   end
 
 end
