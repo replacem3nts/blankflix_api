@@ -10,4 +10,9 @@ class Channel < ApplicationRecord
         end
         @channel
     end
+
+    def user_movie(user_id)
+        movies.where(['user_id = ?', user_id])
+    end
+
 end

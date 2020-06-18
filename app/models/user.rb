@@ -8,5 +8,4 @@ class User < ApplicationRecord
         @channels = Channel.user_channels(self.id)
         @channels.map {|channel| ChannelSerializer.new(channel, user_id: self.id)}
     end
-
 end
