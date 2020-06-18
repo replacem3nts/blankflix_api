@@ -4,11 +4,13 @@ class Movie < ApplicationRecord
   has_many :channels, through: :channelmovies
 
   def movie_channels
-    @channels = Channel.user_channels(self.user_id)
-    @channels.map {|channel| ChannelSerializer.new(channel, user_id: self.user_id)}
+    @user_id = self.user_id
+    @channels = Channel.user_channels(@user_id)
+    @channels.map {|channel| ChannelSerializer.new(channel, user_id: @user_id)}
   end
 
   def add_if_channel(channel_name)
+    debugger
     if channel_name != ""
       @channel = Channel.find_or_create(channel_name)
       self.channels.push(@channel)

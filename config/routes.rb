@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       post '/movies', to: 'movies#create'
       patch '/movies', to: 'movies#update'
       delete '/movies/:id', to: 'movies#delete'
+
+      post '/channel_movies', to: 'channel_movies#create'
+      delete '/channel_movies', to: 'channel_movies#delete'
     end
   end
 end
