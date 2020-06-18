@@ -11,8 +11,8 @@ Rails.application.routes.draw do
       patch '/movies', to: 'movies#update'
       delete '/movies/:id', to: 'movies#delete'
 
-      post '/channel_movies', to: 'channel_movies#create'
-      delete '/channel_movies', to: 'channel_movies#delete'
+      post '/channelmovies', to: 'channelmovies#create'
+      delete '/channelmovies', to: 'channelmovies#delete'
     end
   end
 end
