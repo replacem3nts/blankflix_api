@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       delete '/movies/:id', to: 'movies#delete'
 
       post '/channelmovies', to: 'channelmovies#create'
-      delete '/channelmovies', to: 'channelmovies#delete'
+      delete '/channelmovies/:channel_id/:movie_id', to: 'channelmovies#delete'
     end
   end
 end

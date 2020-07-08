@@ -13,6 +13,15 @@ class Api::V1::ChannelmoviesController < ApplicationController
     end
 
     def delete
+        @movie = Movie.find(params[:movie_id])
+        @channel = Channel.find(params[:channel_id])
+        @deleted = @movie.channels.delete(@channel)
+        byebug
+        if @deleted
+            render json: {channel: ChannelSerializer.new(@channel, user_id: @user.id)}, status: 201
+        else
+            render json: {message: 'Sorry! Movie could not be removed.'}, status: 403
+        end
     end
 
     private

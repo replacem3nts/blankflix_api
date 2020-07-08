@@ -10,7 +10,6 @@ class Movie < ApplicationRecord
   end
 
   def add_if_channel(channel_name)
-    debugger
     if channel_name != ""
       @channel = Channel.find_or_create(channel_name)
       self.channels.push(@channel)
